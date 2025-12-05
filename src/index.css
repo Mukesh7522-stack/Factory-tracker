@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
-  @apply bg-slate-950 text-slate-50 antialiased;
+  @apply bg-gray-50 text-gray-900 antialiased;
   min-height: 100vh;
   font-family: theme('fontFamily.sans');
 }
