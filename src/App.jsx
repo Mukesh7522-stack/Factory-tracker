@@ -1353,7 +1353,7 @@ const App = () => {
               return (
                 <div
                   key={factory}
-                  className="bg-white rounded border border-gray-300 overflow-hidden shadow-sm mb-1"
+                  className="bg-white rounded border-2 border-gray-400 overflow-hidden shadow-md mb-1"
                 >
                   <button
                     onClick={() => toggleFactory(factory)}
@@ -1408,7 +1408,7 @@ const App = () => {
                         return (
                           <div
                             key={monthYear}
-                            className="border-t border-gray-200 py-0.5"
+                            className="border-t-2 border-gray-300 py-0.5"
                           >
                             <div className="px-0.5 mb-0.5">
                               <h3 className="font-bold text-gray-900 text-[9px]">{monthYear}</h3>
@@ -1425,7 +1425,7 @@ const App = () => {
                                   return (
                                     <div
                                       key={referenceKey}
-                                      className="min-w-[80px] w-[80px] bg-white border border-gray-300 rounded p-1 flex flex-col gap-0.5 hover:border-blue-400 transition-colors flex-shrink-0"
+                                      className="min-w-[80px] w-[80px] bg-white border-2 border-gray-400 rounded p-1 flex flex-col gap-0.5 hover:border-blue-500 transition-colors flex-shrink-0 shadow-sm"
                                     >
                                       <div className="text-center">
                                         <p className="text-[9px] font-bold text-gray-900 truncate" title={safeText(reference)}>
