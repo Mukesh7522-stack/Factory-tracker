@@ -1498,18 +1498,18 @@ const App = () => {
                                                       <p className="text-[8px] uppercase text-gray-400 font-bold tracking-wider mb-0">Description</p>
                                                       <p className="text-gray-700 font-medium text-[10px]">{safeText(item.desc)}</p>
                                                     </div>
-                                                    <div className="grid grid-cols-2 gap-2">
+                                                    <div className="grid grid-cols-2 gap-1">
                                                       <div>
-                                                        <p className="text-[10px] uppercase text-gray-400 font-bold tracking-wider mb-0.5">Status</p>
-                                                        <p className="text-gray-700 font-medium">{safeText(item.productStatus)}</p>
+                                                        <p className="text-[8px] uppercase text-gray-400 font-bold tracking-wider mb-0">Status</p>
+                                                        <p className="text-gray-700 text-[10px]">{safeText(item.productStatus)}</p>
                                                       </div>
                                                       <div>
-                                                        <p className="text-[10px] uppercase text-gray-400 font-bold tracking-wider mb-0.5">Insp Date</p>
-                                                        <p className="text-blue-600 font-bold">{formatDateForDisplay(item.inspectionDate) || 'NA'}</p>
+                                                        <p className="text-[8px] uppercase text-gray-400 font-bold tracking-wider mb-0">Insp Date</p>
+                                                        <p className="text-blue-600 font-semibold text-[10px]">{formatDateForDisplay(item.inspectionDate) || 'NA'}</p>
                                                       </div>
-                                                      <div className="col-span-2 mt-1 pt-1 border-t border-gray-100">
-                                                        <p className="text-[10px] uppercase text-gray-400 font-bold tracking-wider mb-0.5">Order Qty</p>
-                                                        <p className="text-gray-900 font-bold">{safeText(item.qty)}</p>
+                                                      <div className="col-span-2">
+                                                        <p className="text-[8px] uppercase text-gray-400 font-bold tracking-wider mb-0">Order Qty</p>
+                                                        <p className="text-gray-900 font-semibold text-[10px]">{safeText(item.qty)}</p>
                                                       </div>
                                                     </div>
                                                   </div>
