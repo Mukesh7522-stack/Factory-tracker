@@ -1482,7 +1482,7 @@ const App = () => {
                                               {/* Hover tooltip for style details - Fixed Position with Dynamic Coords */}
                                               {hoveredStyleKey === styleKey && (
                                                 <div
-                                                  className="fixed z-50 w-48 bg-white border border-gray-300 rounded shadow-xl overflow-hidden pointer-events-none p-1.5"
+                                                  className="fixed z-50 w-48 bg-white border-2 border-gray-400 rounded shadow-xl overflow-hidden pointer-events-none p-1.5"
                                                   style={{
                                                     left: `${Math.min(Math.max(tooltipPos.x, 140), (typeof window !== 'undefined' ? window.innerWidth : 1920) - 140)}px`,
                                                     top: `${tooltipPos.y}px`,
