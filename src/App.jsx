@@ -1421,7 +1421,7 @@ const App = () => {
                                   return (
                                     <div
                                       key={referenceKey}
-                                      className="min-w-[60px] w-[60px] bg-white border border-gray-300 rounded p-0.5 flex flex-col gap-0.5 hover:border-blue-400 transition-colors flex-shrink-0"
+                                      className="min-w-[80px] w-[80px] bg-white border border-gray-300 rounded p-1 flex flex-col gap-0.5 hover:border-blue-400 transition-colors flex-shrink-0"
                                     >
                                       <div className="text-center">
                                         <p className="text-[9px] font-bold text-gray-900 truncate" title={safeText(reference)}>
@@ -1459,7 +1459,7 @@ const App = () => {
                                                 className={`w-full text-left px-1 py-0.5 rounded border transition-all bg-white border-gray-300 hover:border-blue-400 text-gray-900 ${isOpen ? 'ring-1 ring-blue-500' : ''}`}
                                               >
                                                 <div className="flex flex-col items-center text-center">
-                                                  <span className="truncate font-semibold text-[8px] w-full leading-tight">{safeText(item.style)}</span>
+                                                  <span className="truncate font-semibold text-[9px] w-full leading-tight">{safeText(item.style)}</span>
                                                   {dateStr && (
                                                     <span className="text-[7px] opacity-70 leading-tight">
                                                       {dateStr}
@@ -1478,10 +1478,10 @@ const App = () => {
                                               {/* Hover tooltip for style details - Fixed Position with Dynamic Coords */}
                                               {hoveredStyleKey === styleKey && (
                                                 <div
-                                                  className="fixed z-50 w-64 bg-white border border-gray-100 rounded-2xl shadow-2xl overflow-hidden pointer-events-none p-4"
+                                                  className="fixed z-50 w-64 bg-white border border-gray-300 rounded-lg shadow-2xl overflow-hidden pointer-events-none p-3"
                                                   style={{
-                                                    left: tooltipPos.x,
-                                                    top: tooltipPos.y,
+                                                    left: `${Math.min(Math.max(tooltipPos.x, 140), (typeof window !== 'undefined' ? window.innerWidth : 1920) - 140)}px`,
+                                                    top: `${tooltipPos.y}px`,
                                                     transform: tooltipPos.showBelow ? 'translate(-50%, 0)' : 'translate(-50%, -100%)'
                                                   }}
                                                 >
