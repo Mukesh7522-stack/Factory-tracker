@@ -1325,7 +1325,7 @@ const App = () => {
             <p className="text-gray-500 text-lg">No results match your search/filter.</p>
           </div>
         ) : (
-          <div className="space-y-3">
+          <div className="space-y-1">
             {factories.map((factory) => {
               const monthsMap = organized[factory] || {};
               const monthEntries = Object.entries(monthsMap).sort(
@@ -1349,7 +1349,7 @@ const App = () => {
               return (
                 <div
                   key={factory}
-                  className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+                  className="bg-white rounded border border-gray-300 overflow-hidden shadow-sm mb-1"
                 >
                   <button
                     onClick={() => toggleFactory(factory)}
@@ -1377,7 +1377,7 @@ const App = () => {
                   </button>
 
                   {expandedFactories[factory] && (
-                    <div className="px-3 pb-3 space-y-2 animate-fadeIn">
+                    <div className="px-1 pb-1 space-y-0.5 animate-fadeIn">
                       {monthEntries.map(([monthYear, monthData]) => {
                         const expanded = expandedMonths[`${factory}-${monthYear}`];
                         const references = monthData.references || {};
@@ -1404,150 +1404,135 @@ const App = () => {
                         return (
                           <div
                             key={monthYear}
-                            className="bg-white border-t border-gray-100 p-2"
+                            className="border-t border-gray-200 py-0.5"
                           >
-                            <div className="flex items-center gap-2 w-full group mb-2">
-                              <div className={`p-1 rounded transition-colors ${isMonthOpen ? 'bg-purple-100 text-purple-600' : 'bg-gray-100 text-gray-400 group-hover:text-gray-600'}`}>
-                                {isMonthOpen ? <ChevronDown className="w-3 h-3" /> : <ChevronRight className="w-3 h-3" />}
-                              </div>
-                              <div className="text-left">
-                                <h3 className="font-bold text-gray-800 text-[11px] group-hover:text-purple-600 transition-colors">{monthYear}</h3>
-                                <p className="text-[9px] text-gray-500">
-                                  {monthReferences.length} REF(S) • {monthStylesCount} STYLES
-                                </p>
-                              </div>
+                            <div className="px-0.5 mb-0.5">
+                              <h3 className="font-bold text-gray-900 text-[9px]">{monthYear}</h3>
                             </div>
 
-                            {expanded && (
-                              <div className="p-2 animate-fadeIn">
-                                {/* Horizontal Scroll Layout */}
-                                <div className="flex flex-nowrap overflow-x-auto gap-2 pb-2 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent">
-                                  {referenceEntries.length === 0 && (
-                                    <div className="text-gray-500 text-sm p-2">No references found.</div>
-                                  )}
-                                  {referenceEntries.map(([reference, referenceData]) => {
-                                    const referenceKey = `${factory}-${monthYear}-${reference}`;
+                            <div>
+                              <div className="flex flex-nowrap overflow-x-auto gap-1 pb-1">
+                                {referenceEntries.length === 0 && (
+                                  <div className="text-gray-500 text-sm p-2">No references found.</div>
+                                )}
+                                {referenceEntries.map(([reference, referenceData]) => {
+                                  const referenceKey = `${factory}-${monthYear}-${reference}`;
 
-                                    return (
-                                      <div
-                                        key={referenceKey}
-                                        className="min-w-[120px] w-[120px] bg-gray-50 border border-gray-200 rounded-xl p-2 flex flex-col gap-1 hover:border-purple-500/50 transition-colors flex-shrink-0"
-                                      >
-                                        <div className="text-center">
-                                          <p className="text-xs font-semibold text-gray-900 truncate" title={safeText(reference)}>
-                                            {safeText(reference)}
-                                          </p>
-                                          <p className="text-[10px] text-gray-500">
-                                            {referenceData.records.length} style(s)
-                                          </p>
-                                        </div>
-
-                                        <div className="flex flex-col gap-1">
-                                          {referenceData.records.map((item, index) => {
-                                            const styleKey = buildOverrideKey(item.factory, item.reference, item.style);
-                                            const isOpen = !!openStyleCards[styleKey];
-
-                                            // Uniform Color (Light Theme)
-                                            const statusColorClass = 'bg-white border-gray-200 text-gray-900 hover:border-purple-400 shadow-sm hover:shadow-md';
-
-                                            // Format Date Short
-                                            const dateObj = parseSheetDate(item.inspectionDate);
-                                            const dateStr = dateObj ? dateObj.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: '2-digit' }).toUpperCase().replace(/ /g, '-') : '';
-
-                                            return (
-                                              <div key={styleKey} className="relative flex flex-col items-center">
-                                                <button
-                                                  onClick={() => toggleStyleCard(styleKey)}
-                                                  onMouseEnter={(e) => {
-                                                    const rect = e.currentTarget.getBoundingClientRect();
-                                                    const showBelow = rect.top < 200; // Show below if close to top
-                                                    setTooltipPos({
-                                                      x: rect.left + rect.width / 2,
-                                                      y: showBelow ? rect.bottom + 12 : rect.top - 12,
-                                                      showBelow
-                                                    });
-                                                    setHoveredStyleKey(styleKey);
-                                                  }}
-                                                  onMouseLeave={() => setHoveredStyleKey(null)}
-                                                  className={`w-full text-left px-2 py-1.5 rounded-lg border transition-all ${statusColorClass} ${isOpen ? 'ring-2 ring-blue-500' : ''
-                                                    }`}
-                                                >
-                                                  <div className="flex flex-col items-center text-center gap-0.5">
-                                                    <span className="truncate font-bold text-[11px] w-full">{safeText(item.style)}</span>
-                                                    {dateStr && (
-                                                      <span className="text-[9px] opacity-80 font-mono">
-                                                        ({dateStr})
-                                                      </span>
-                                                    )}
-                                                  </div>
-                                                </button>
-
-                                                {/* Arrow Connector (if not last item) */}
-                                                {index < referenceData.records.length - 1 && (
-                                                  <div className="text-gray-400 py-0.5">
-                                                    <ArrowDown className="w-3 h-3" />
-                                                  </div>
-                                                )}
-
-                                                {/* Hover tooltip for style details - Fixed Position with Dynamic Coords */}
-                                                {hoveredStyleKey === styleKey && (
-                                                  <div
-                                                    className="fixed z-50 w-64 bg-white border border-gray-100 rounded-2xl shadow-2xl overflow-hidden pointer-events-none p-4"
-                                                    style={{
-                                                      left: tooltipPos.x,
-                                                      top: tooltipPos.y,
-                                                      transform: tooltipPos.showBelow ? 'translate(-50%, 0)' : 'translate(-50%, -100%)'
-                                                    }}
-                                                  >
-                                                    <div className="space-y-3 text-xs">
-                                                      <div>
-                                                        <p className="text-[10px] uppercase text-gray-400 font-bold tracking-wider mb-0.5">Style</p>
-                                                        <p className="text-gray-900 font-bold text-base">{safeText(item.style)}</p>
-                                                      </div>
-                                                      <div>
-                                                        <p className="text-[10px] uppercase text-gray-400 font-bold tracking-wider mb-0.5">Description</p>
-                                                        <p className="text-gray-700 font-medium">{safeText(item.desc)}</p>
-                                                      </div>
-                                                      <div className="grid grid-cols-2 gap-2">
-                                                        <div>
-                                                          <p className="text-[10px] uppercase text-gray-400 font-bold tracking-wider mb-0.5">Status</p>
-                                                          <p className="text-gray-700 font-medium">{safeText(item.productStatus)}</p>
-                                                        </div>
-                                                        <div>
-                                                          <p className="text-[10px] uppercase text-gray-400 font-bold tracking-wider mb-0.5">Insp Date</p>
-                                                          <p className="text-blue-600 font-bold">{formatDateForDisplay(item.inspectionDate) || 'NA'}</p>
-                                                        </div>
-                                                        <div className="col-span-2 mt-1 pt-1 border-t border-gray-100">
-                                                          <p className="text-[10px] uppercase text-gray-400 font-bold tracking-wider mb-0.5">Order Qty</p>
-                                                          <p className="text-gray-900 font-bold">{safeText(item.qty)}</p>
-                                                        </div>
-                                                      </div>
-                                                    </div>
-                                                  </div>
-                                                )}
-
-                                                {isOpen && (
-                                                  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4" onClick={() => toggleStyleCard(styleKey)}>
-                                                    <div className="w-full max-w-lg" onClick={e => e.stopPropagation()}>
-                                                      <div className="flex justify-end mb-2">
-                                                        <button onClick={() => toggleStyleCard(styleKey)} className="text-white hover:text-gray-300">
-                                                          <X className="w-6 h-6" />
-                                                        </button>
-                                                      </div>
-                                                      {renderStyleCard(item)}
-                                                    </div>
-                                                  </div>
-                                                )}
-                                              </div>
-                                            );
-                                          })}
-                                        </div>
+                                  return (
+                                    <div
+                                      key={referenceKey}
+                                      className="min-w-[60px] w-[60px] bg-white border border-gray-300 rounded p-0.5 flex flex-col gap-0.5 hover:border-blue-400 transition-colors flex-shrink-0"
+                                    >
+                                      <div className="text-center">
+                                        <p className="text-[9px] font-bold text-gray-900 truncate" title={safeText(reference)}>
+                                          {safeText(reference)}
+                                        </p>
                                       </div>
-                                    );
-                                  })}
-                                </div>
+
+                                      <div className="flex flex-col gap-0.5">
+                                        {referenceData.records.map((item, index) => {
+                                          const styleKey = buildOverrideKey(item.factory, item.reference, item.style);
+                                          const isOpen = !!openStyleCards[styleKey];
+
+                                          // Uniform Color (Light Theme)
+                                          const statusColorClass = 'bg-white border-gray-200 text-gray-900 hover:border-purple-400 shadow-sm hover:shadow-md';
+
+                                          // Format Date Short
+                                          const dateObj = parseSheetDate(item.inspectionDate);
+                                          const dateStr = dateObj ? dateObj.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: '2-digit' }).toUpperCase().replace(/ /g, '-') : '';
+
+                                          return (
+                                            <div key={styleKey} className="relative flex flex-col items-center">
+                                              <button
+                                                onClick={() => toggleStyleCard(styleKey)}
+                                                onMouseEnter={(e) => {
+                                                  const rect = e.currentTarget.getBoundingClientRect();
+                                                  const showBelow = rect.top < 200; // Show below if close to top
+                                                  setTooltipPos({
+                                                    x: rect.left + rect.width / 2,
+                                                    y: showBelow ? rect.bottom + 12 : rect.top - 12,
+                                                    showBelow
+                                                  });
+                                                  setHoveredStyleKey(styleKey);
+                                                }}
+                                                onMouseLeave={() => setHoveredStyleKey(null)}
+                                                className={`w-full text-left px-1 py-0.5 rounded border transition-all bg-white border-gray-300 hover:border-blue-400 text-gray-900 ${isOpen ? 'ring-1 ring-blue-500' : ''}`}
+                                              >
+                                                <div className="flex flex-col items-center text-center">
+                                                  <span className="truncate font-semibold text-[8px] w-full leading-tight">{safeText(item.style)}</span>
+                                                  {dateStr && (
+                                                    <span className="text-[7px] opacity-70 leading-tight">
+                                                      {dateStr}
+                                                    </span>
+                                                  )}
+                                                </div>
+                                              </button>
+
+                                              {/* Arrow Connector (if not last item) */}
+                                              {index < referenceData.records.length - 1 && (
+                                                <div className="text-gray-300 py-0">
+                                                  <ArrowDown className="w-2 h-2" />
+                                                </div>
+                                              )}
+
+                                              {/* Hover tooltip for style details - Fixed Position with Dynamic Coords */}
+                                              {hoveredStyleKey === styleKey && (
+                                                <div
+                                                  className="fixed z-50 w-64 bg-white border border-gray-100 rounded-2xl shadow-2xl overflow-hidden pointer-events-none p-4"
+                                                  style={{
+                                                    left: tooltipPos.x,
+                                                    top: tooltipPos.y,
+                                                    transform: tooltipPos.showBelow ? 'translate(-50%, 0)' : 'translate(-50%, -100%)'
+                                                  }}
+                                                >
+                                                  <div className="space-y-3 text-xs">
+                                                    <div>
+                                                      <p className="text-[10px] uppercase text-gray-400 font-bold tracking-wider mb-0.5">Style</p>
+                                                      <p className="text-gray-900 font-bold text-base">{safeText(item.style)}</p>
+                                                    </div>
+                                                    <div>
+                                                      <p className="text-[10px] uppercase text-gray-400 font-bold tracking-wider mb-0.5">Description</p>
+                                                      <p className="text-gray-700 font-medium">{safeText(item.desc)}</p>
+                                                    </div>
+                                                    <div className="grid grid-cols-2 gap-2">
+                                                      <div>
+                                                        <p className="text-[10px] uppercase text-gray-400 font-bold tracking-wider mb-0.5">Status</p>
+                                                        <p className="text-gray-700 font-medium">{safeText(item.productStatus)}</p>
+                                                      </div>
+                                                      <div>
+                                                        <p className="text-[10px] uppercase text-gray-400 font-bold tracking-wider mb-0.5">Insp Date</p>
+                                                        <p className="text-blue-600 font-bold">{formatDateForDisplay(item.inspectionDate) || 'NA'}</p>
+                                                      </div>
+                                                      <div className="col-span-2 mt-1 pt-1 border-t border-gray-100">
+                                                        <p className="text-[10px] uppercase text-gray-400 font-bold tracking-wider mb-0.5">Order Qty</p>
+                                                        <p className="text-gray-900 font-bold">{safeText(item.qty)}</p>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              )}
+
+                                              {isOpen && (
+                                                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4" onClick={() => toggleStyleCard(styleKey)}>
+                                                  <div className="w-full max-w-lg" onClick={e => e.stopPropagation()}>
+                                                    <div className="flex justify-end mb-2">
+                                                      <button onClick={() => toggleStyleCard(styleKey)} className="text-white hover:text-gray-300">
+                                                        <X className="w-6 h-6" />
+                                                      </button>
+                                                    </div>
+                                                    {renderStyleCard(item)}
+                                                  </div>
+                                                </div>
+                                              )}
+                                            </div>
+                                          );
+                                        })}
+                                      </div>
+                                    </div>
+                                  );
+                                })}
                               </div>
-                            )}
+                            </div>
                           </div>
                         );
                       })}
@@ -1569,7 +1554,7 @@ const App = () => {
                 <X className="w-6 h-6" />
               </button>
             </div>
-            <div className="space-y-3">
+            <div className="space-y-1">
               <div className="text-sm text-gray-500">
                 <p>Style: {safeText(editModal.style)}</p>
                 <p>Factory: {safeText(editModal.factory)}</p>
@@ -1620,7 +1605,7 @@ const App = () => {
                 <X className="w-6 h-6" />
               </button>
             </div>
-            <div className="space-y-3">
+            <div className="space-y-1">
               <p className="text-sm text-gray-500">Style: {safeText(remarksModal.style)}</p>
               <textarea
                 className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900 h-32"
