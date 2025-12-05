@@ -1482,21 +1482,21 @@ const App = () => {
                                               {/* Hover tooltip for style details - Fixed Position with Dynamic Coords */}
                                               {hoveredStyleKey === styleKey && (
                                                 <div
-                                                  className="fixed z-50 w-64 bg-white border border-gray-300 rounded-lg shadow-2xl overflow-hidden pointer-events-none p-3"
+                                                  className="fixed z-50 w-48 bg-white border border-gray-300 rounded shadow-xl overflow-hidden pointer-events-none p-1.5"
                                                   style={{
                                                     left: `${Math.min(Math.max(tooltipPos.x, 140), (typeof window !== 'undefined' ? window.innerWidth : 1920) - 140)}px`,
                                                     top: `${tooltipPos.y}px`,
                                                     transform: tooltipPos.showBelow ? 'translate(-50%, 0)' : 'translate(-50%, -100%)'
                                                   }}
                                                 >
-                                                  <div className="space-y-3 text-xs">
+                                                  <div className="space-y-1 text-xs">
                                                     <div>
-                                                      <p className="text-[10px] uppercase text-gray-400 font-bold tracking-wider mb-0.5">Style</p>
-                                                      <p className="text-gray-900 font-bold text-base">{safeText(item.style)}</p>
+                                                      <p className="text-[8px] uppercase text-gray-400 font-bold tracking-wider mb-0">Style</p>
+                                                      <p className="text-gray-900 font-bold text-sm">{safeText(item.style)}</p>
                                                     </div>
                                                     <div>
-                                                      <p className="text-[10px] uppercase text-gray-400 font-bold tracking-wider mb-0.5">Description</p>
-                                                      <p className="text-gray-700 font-medium">{safeText(item.desc)}</p>
+                                                      <p className="text-[8px] uppercase text-gray-400 font-bold tracking-wider mb-0">Description</p>
+                                                      <p className="text-gray-700 font-medium text-[10px]">{safeText(item.desc)}</p>
                                                     </div>
                                                     <div className="grid grid-cols-2 gap-2">
                                                       <div>
