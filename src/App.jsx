@@ -1112,87 +1112,83 @@ const App = () => {
     return (
       <div
         key={`${item.style}-${item.rowIndex}`}
-        className="group relative bg-white border border-gray-200 rounded-2xl p-5 shadow-sm hover:border-blue-500/50 hover:shadow-md transition-all duration-300"
+        className="group relative bg-white border border-gray-200 rounded-lg p-2 shadow-sm hover:border-blue-500/50 hover:shadow-md transition-all duration-300"
         onMouseEnter={() => setHoveredStyleKey(styleKey)}
         onMouseLeave={() => setHoveredStyleKey(null)}
       >
-        <div className="flex flex-wrap items-start justify-between gap-4">
+        <div className="flex flex-wrap items-start justify-between gap-2">
           <div>
-            <p className="text-xs uppercase text-gray-500">Style</p>
-            <div className="flex items-center gap-2">
-              <p className="text-xl font-semibold text-blue-600">{safeText(item.style)}</p>
-              <div className="text-[10px] text-gray-400 uppercase tracking-[0.3em] flex items-center gap-1">
-                <span>STYLE#</span>
-                <span className="text-base leading-none text-blue-600">↓</span>
-              </div>
+            <p className="text-[9px] uppercase text-gray-500 mb-0.5">Style</p>
+            <div className="flex items-center gap-1">
+              <p className="text-sm font-semibold text-blue-600">{safeText(item.style)}</p>
             </div>
-            <p className="text-xs uppercase text-gray-500 mt-3">Reference</p>
-            <p className="text-sm text-gray-900 font-semibold">{safeText(item.reference)}</p>
+            <p className="text-[9px] uppercase text-gray-500 mt-1 mb-0.5">Reference</p>
+            <p className="text-xs text-gray-900 font-semibold">{safeText(item.reference)}</p>
           </div>
-          <div className="flex flex-col items-end gap-2 text-sm text-gray-700">
-            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-50 border border-yellow-200 text-yellow-700">
-              <Calendar className="w-4 h-4" />
-              <span>{formatDateForDisplay(item.inspectionDate) || 'Not set'}</span>
+          <div className="flex flex-col items-end gap-1 text-xs text-gray-700">
+            <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-yellow-50 border border-yellow-200 text-yellow-700">
+              <Calendar className="w-3 h-3" />
+              <span className="text-[10px]">{formatDateForDisplay(item.inspectionDate) || 'Not set'}</span>
             </div>
           </div>
         </div>
 
-        <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="bg-gray-50 rounded-2xl p-4 border border-gray-200">
-            <div className="flex items-center gap-2 text-xs uppercase text-gray-500">
-              <Sparkles className="w-3 h-3 text-green-600" />
+        <div className="mt-2 grid grid-cols-1 md:grid-cols-2 gap-2">
+          <div className="bg-gray-50 rounded-lg p-2 border border-gray-200">
+            <div className="flex items-center gap-1 text-[9px] uppercase text-gray-500">
+              <Sparkles className="w-2.5 h-2.5 text-green-600" />
               <span>RM Req Deadline</span>
             </div>
-            <p className="text-sm text-green-600 font-semibold mt-2 leading-6">{rmDeadlineDisplay}</p>
-            <p className="text-[11px] text-gray-500 mt-2">
-              Offset: {deadlineDays || 0} day(s) from inspection based on factory deadline sheet.
+            <p className="text-xs text-green-600 font-semibold mt-1 leading-tight">{rmDeadlineDisplay}</p>
+            <p className="text-[9px] text-gray-500 mt-1">
+              Offset: {deadlineDays || 0} day(s)
             </p>
           </div>
-          <div className="bg-gray-50 rounded-2xl p-4 border border-gray-200 grid grid-cols-2 gap-3">
+          <div className="bg-gray-50 rounded-lg p-2 border border-gray-200 grid grid-cols-2 gap-2">
             <div>
-              <p className="text-[11px] uppercase text-gray-500">Order Qty</p>
-              <p className="text-gray-900 font-semibold">{safeText(item.qty)}</p>
+              <p className="text-[9px] uppercase text-gray-500">Order Qty</p>
+              <p className="text-xs text-gray-900 font-semibold">{safeText(item.qty)}</p>
             </div>
             <div>
-              <p className="text-[11px] uppercase text-gray-500">Factory</p>
-              <p className="text-gray-900 font-semibold">{safeText(item.factory)}</p>
+              <p className="text-[9px] uppercase text-gray-500">Factory</p>
+              <p className="text-xs text-gray-900 font-semibold">{safeText(item.factory)}</p>
             </div>
-            <div className="md:col-span-2">
-              <p className="text-[11px] uppercase text-gray-500">Production Status</p>
-              <p className="text-gray-900">{safeText(item.productStatus)}</p>
+            <div className="col-span-2">
+              <p className="text-[9px] uppercase text-gray-500">Status</p>
+              <p className="text-xs text-gray-900">{safeText(item.productStatus)}</p>
             </div>
           </div>
         </div>
 
-        <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3 text-sm text-gray-700">
-          <div className="bg-gray-50 rounded-xl p-3 border border-gray-200">
-            <p className="text-[11px] uppercase text-gray-500">Description</p>
-            <p className="mt-1">{safeText(item.desc)}</p>
+        <div className="mt-2 grid grid-cols-1 md:grid-cols-3 gap-2 text-xs text-gray-700">
+          <div className="bg-gray-50 rounded-lg p-2 border border-gray-200">
+            <p className="text-[9px] uppercase text-gray-500">Description</p>
+            <p className="mt-0.5 text-[10px]">{safeText(item.desc)}</p>
           </div>
-          <div className="bg-gray-50 rounded-xl p-3 border border-gray-200">
-            <p className="text-[11px] uppercase text-gray-500">Fabric Description</p>
-            <p className="mt-1">{safeText(item.fabricDesc)}</p>
+          <div className="bg-gray-50 rounded-lg p-2 border border-gray-200">
+            <p className="text-[9px] uppercase text-gray-500">Fabric</p>
+            <p className="mt-0.5 text-[10px]">{safeText(item.fabricDesc)}</p>
           </div>
-          <div className="bg-gray-50 rounded-xl p-3 border border-gray-200">
-            <p className="text-[11px] uppercase text-gray-500">History</p>
-            <p className="mt-1 max-h-16 overflow-hidden text-ellipsis">{item.history || 'NA'}</p>
+          <div className="bg-gray-50 rounded-lg p-2 border border-gray-200">
+            <p className="text-[9px] uppercase text-gray-500">History</p>
+            <p className="mt-0.5 max-h-12 overflow-hidden text-ellipsis text-[10px]">{item.history || 'NA'}</p>
           </div>
         </div>
 
         {canEdit && (
-          <div className="mt-4 flex flex-wrap gap-3">
+          <div className="mt-2 flex flex-wrap gap-2">
             <button
               onClick={() => openEditModal(item)}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 transition-all duration-200"
+              className="flex items-center gap-1 px-2 py-1 rounded text-xs bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 transition-all duration-200"
             >
-              <Calendar className="w-4 h-4" />
+              <Calendar className="w-3 h-3" />
               Edit Inspection Date
             </button>
             <button
               onClick={() => openRemarksModal(item)}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-50 text-purple-700 border border-purple-200 hover:bg-purple-100 transition-all duration-200"
+              className="flex items-center gap-1 px-2 py-1 rounded text-xs bg-purple-50 text-purple-700 border border-purple-200 hover:bg-purple-100 transition-all duration-200"
             >
-              <Edit2 className="w-4 h-4" />
+              <Edit2 className="w-3 h-3" />
               Remarks
             </button>
           </div>
