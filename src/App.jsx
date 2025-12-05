@@ -1460,7 +1460,7 @@ const App = () => {
                                                   setHoveredStyleKey(styleKey);
                                                 }}
                                                 onMouseLeave={() => setHoveredStyleKey(null)}
-                                                className={`w-full text-left px-1 py-0.5 rounded border transition-all bg-white border-gray-300 hover:border-blue-400 text-gray-900 ${isOpen ? 'ring-1 ring-blue-500' : ''}`}
+                                                className={`w-full text-left px-1.5 py-1 rounded border-2 transition-all ${isOpen ? 'bg-blue-50 border-blue-500 ring-1 ring-blue-400' : 'bg-white border-gray-400 hover:border-blue-500'}`}
                                               >
                                                 <div className="flex flex-col items-center text-center">
                                                   <span className="truncate font-semibold text-[9px] w-full leading-tight">{safeText(item.style)}</span>
