@@ -896,9 +896,17 @@ const App = () => {
     const reason = window.prompt('Reason for change? (Optional)');
     const previousDate = formatDateForDisplay(editModal.inspectionDate);
 
-    // Get current time in IST
+    // Get current date and time in IST
     const now = new Date();
     const istTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
+
+    // Format date as 5/12/25
+    const day = istTime.getDate();
+    const month = istTime.getMonth() + 1;
+    const year = String(istTime.getFullYear()).slice(-2);
+    const dateStr = `${day}/${month}/${year}`;
+
+    // Format time as 1:16 PM
     const hours = istTime.getHours();
     const minutes = String(istTime.getMinutes()).padStart(2, '0');
     const ampm = hours >= 12 ? 'PM' : 'AM';
@@ -906,8 +914,8 @@ const App = () => {
     const timeStr = `${displayHours}:${minutes} ${ampm}`;
 
     const historyEntry = reason
-      ? `${previousDate} | ${timeStr} (${reason})`
-      : `${previousDate} | ${timeStr}`;
+      ? `${previousDate} | ${dateStr} ${timeStr} (${reason})`
+      : `${previousDate} | ${dateStr} ${timeStr}`;
 
     const newHistory = editModal.history ? `${editModal.history}, ${historyEntry}` : historyEntry;
 
