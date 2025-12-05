@@ -1112,83 +1112,84 @@ const App = () => {
     return (
       <div
         key={`${item.style}-${item.rowIndex}`}
-        className="group relative bg-white border border-gray-200 rounded-lg p-2 shadow-sm hover:border-blue-500/50 hover:shadow-md transition-all duration-300"
+        className="group relative bg-gradient-to-br from-white to-blue-50 border-2 border-gray-900 rounded-lg p-1.5 shadow-sm hover:border-black hover:shadow-md transition-all duration-300"
         onMouseEnter={() => setHoveredStyleKey(styleKey)}
         onMouseLeave={() => setHoveredStyleKey(null)}
       >
-        <div className="flex flex-wrap items-start justify-between gap-2">
+        <div className="flex flex-wrap items-start justify-between gap-1">
           <div>
-            <p className="text-[9px] uppercase text-gray-500 mb-0.5">Style</p>
+            <p className="text-[8px] uppercase text-blue-500 font-extrabold mb-0.5">Style</p>
             <div className="flex items-center gap-1">
-              <p className="text-sm font-semibold text-blue-600">{safeText(item.style)}</p>
+              <p className="text-xs font-extrabold text-blue-700">{safeText(item.style)}</p>
             </div>
-            <p className="text-[9px] uppercase text-gray-500 mt-1 mb-0.5">Reference</p>
-            <p className="text-xs text-gray-900 font-semibold">{safeText(item.reference)}</p>
-          </div>
-          <div className="flex flex-col items-end gap-1 text-xs text-gray-700">
-            <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-yellow-50 border border-yellow-200 text-yellow-700">
-              <Calendar className="w-3 h-3" />
-              <span className="text-[10px]">{formatDateForDisplay(item.inspectionDate) || 'Not set'}</span>
-            </div>
+            <p className="text-[8px] uppercase text-purple-500 font-extrabold mt-0.5 mb-0.5">Reference</p>
+            <p className="text-[10px] text-gray-900 font-bold">{safeText(item.reference)}</p>
           </div>
         </div>
 
-        <div className="mt-2 grid grid-cols-1 md:grid-cols-2 gap-2">
-          <div className="bg-gray-50 rounded-lg p-2 border border-gray-200">
-            <div className="flex items-center gap-1 text-[9px] uppercase text-gray-500">
+        <div className="mt-1 grid grid-cols-1 md:grid-cols-2 gap-1">
+          <div className="bg-white rounded p-1.5 border border-green-200 shadow-sm">
+            <div className="flex items-center gap-0.5 text-[8px] uppercase text-green-600 font-extrabold">
               <Sparkles className="w-2.5 h-2.5 text-green-600" />
-              <span>RM Req Deadline</span>
+              <span>RM Deadline</span>
             </div>
-            <p className="text-xs text-green-600 font-semibold mt-1 leading-tight">{rmDeadlineDisplay}</p>
-            <p className="text-[9px] text-gray-500 mt-1">
-              Offset: {deadlineDays || 0} day(s)
+            <p className="text-[10px] text-green-700 font-extrabold mt-0.5 leading-tight">{rmDeadlineDisplay}</p>
+            <p className="text-[8px] text-gray-600 mt-0.5 font-medium">
+              {deadlineDays || 0}d offset
             </p>
           </div>
-          <div className="bg-gray-50 rounded-lg p-2 border border-gray-200 grid grid-cols-2 gap-2">
+          <div className="bg-white rounded p-1.5 border border-yellow-200 shadow-sm">
+            <div className="flex items-center gap-0.5 text-[8px] uppercase text-yellow-600 font-extrabold">
+              <Calendar className="w-2.5 h-2.5 text-yellow-600" />
+              <span>Inspection</span>
+            </div>
+            <p className="text-[10px] text-yellow-700 font-extrabold mt-0.5 leading-tight">{formatDateForDisplay(item.inspectionDate) || 'Not set'}</p>
+          </div>
+          <div className="bg-white rounded p-1.5 border border-purple-200 grid grid-cols-2 gap-1 shadow-sm">
             <div>
-              <p className="text-[9px] uppercase text-gray-500">Order Qty</p>
-              <p className="text-xs text-gray-900 font-semibold">{safeText(item.qty)}</p>
+              <p className="text-[8px] uppercase text-purple-500 font-extrabold">Qty</p>
+              <p className="text-[10px] text-gray-900 font-bold">{safeText(item.qty)}</p>
             </div>
             <div>
-              <p className="text-[9px] uppercase text-gray-500">Factory</p>
-              <p className="text-xs text-gray-900 font-semibold">{safeText(item.factory)}</p>
+              <p className="text-[8px] uppercase text-blue-500 font-extrabold">Factory</p>
+              <p className="text-[10px] text-gray-900 font-bold">{safeText(item.factory)}</p>
             </div>
             <div className="col-span-2">
-              <p className="text-[9px] uppercase text-gray-500">Status</p>
-              <p className="text-xs text-gray-900">{safeText(item.productStatus)}</p>
+              <p className="text-[8px] uppercase text-orange-500 font-extrabold">Status</p>
+              <p className="text-[10px] text-gray-900">{safeText(item.productStatus)}</p>
             </div>
           </div>
         </div>
 
-        <div className="mt-2 grid grid-cols-1 md:grid-cols-3 gap-2 text-xs text-gray-700">
-          <div className="bg-gray-50 rounded-lg p-2 border border-gray-200">
-            <p className="text-[9px] uppercase text-gray-500">Description</p>
-            <p className="mt-0.5 text-[10px]">{safeText(item.desc)}</p>
+        <div className="mt-1 grid grid-cols-1 md:grid-cols-3 gap-1 text-xs text-gray-700">
+          <div className="bg-white rounded p-1.5 border border-blue-200 shadow-sm">
+            <p className="text-[8px] uppercase text-blue-500 font-extrabold">Description</p>
+            <p className="mt-0.5 text-[9px] leading-tight">{safeText(item.desc)}</p>
           </div>
-          <div className="bg-gray-50 rounded-lg p-2 border border-gray-200">
-            <p className="text-[9px] uppercase text-gray-500">Fabric</p>
-            <p className="mt-0.5 text-[10px]">{safeText(item.fabricDesc)}</p>
+          <div className="bg-white rounded p-1.5 border border-purple-200 shadow-sm">
+            <p className="text-[8px] uppercase text-purple-500 font-extrabold">Fabric</p>
+            <p className="mt-0.5 text-[9px] leading-tight">{safeText(item.fabricDesc)}</p>
           </div>
-          <div className="bg-gray-50 rounded-lg p-2 border border-gray-200">
-            <p className="text-[9px] uppercase text-gray-500">History</p>
-            <p className="mt-0.5 max-h-12 overflow-hidden text-ellipsis text-[10px]">{item.history || 'NA'}</p>
+          <div className="bg-white rounded p-1.5 border border-green-200 shadow-sm">
+            <p className="text-[8px] uppercase text-green-500 font-extrabold">History</p>
+            <p className="mt-0.5 max-h-10 overflow-hidden text-ellipsis text-[9px] leading-tight">{item.history || 'NA'}</p>
           </div>
         </div>
 
         {canEdit && (
-          <div className="mt-2 flex flex-wrap gap-2">
+          <div className="mt-1 flex flex-wrap gap-1">
             <button
               onClick={() => openEditModal(item)}
-              className="flex items-center gap-1 px-2 py-1 rounded text-xs bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 transition-all duration-200"
+              className="flex items-center gap-0.5 px-2 py-1 rounded text-[9px] font-semibold bg-gradient-to-r from-blue-500 to-blue-600 text-white border border-blue-400 hover:from-blue-600 hover:to-blue-700 transition-all duration-200 shadow-sm hover:shadow"
             >
-              <Calendar className="w-3 h-3" />
-              Edit Inspection Date
+              <Calendar className="w-2.5 h-2.5" />
+              Edit Inspection
             </button>
             <button
               onClick={() => openRemarksModal(item)}
-              className="flex items-center gap-1 px-2 py-1 rounded text-xs bg-purple-50 text-purple-700 border border-purple-200 hover:bg-purple-100 transition-all duration-200"
+              className="flex items-center gap-0.5 px-2 py-1 rounded text-[9px] font-semibold bg-gradient-to-r from-purple-500 to-purple-600 text-white border border-purple-400 hover:from-purple-600 hover:to-purple-700 transition-all duration-200 shadow-sm hover:shadow"
             >
-              <Edit2 className="w-3 h-3" />
+              <Edit2 className="w-2.5 h-2.5" />
               Remarks
             </button>
           </div>
@@ -1203,18 +1204,18 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-white text-gray-900 font-sans">
-      <div className="bg-white border-b border-gray-200 sticky top-0 z-40 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 py-2">
+      <div className="bg-gradient-to-r from-blue-50 via-white to-purple-50 border-b-2 border-blue-200 sticky top-0 z-40 shadow-lg">
+        <div className="max-w-7xl mx-auto px-4 py-3">
           {/* Top Row - Title and Actions */}
-          <div className="flex justify-between items-center mb-2">
-            <h1 className="text-sm font-bold text-gray-900">
+          <div className="flex justify-between items-center mb-3">
+            <h1 className="text-lg font-extrabold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Factory Production Tracker
             </h1>
             <div className="flex gap-2 items-center">
-              <span className="text-xs text-gray-500">Logged in as {authUser.display}</span>
+              <span className="text-xs font-medium text-gray-600 bg-white px-3 py-1.5 rounded-full border border-gray-200 shadow-sm">Logged in as {authUser.display}</span>
               <button
                 onClick={handleLogout}
-                className="px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors border border-gray-200"
+                className="px-4 py-1.5 text-xs font-semibold text-gray-700 hover:text-gray-900 bg-white hover:bg-gray-50 rounded-lg transition-all border-2 border-gray-300 hover:border-gray-400 shadow-sm hover:shadow"
               >
                 Logout
               </button>
@@ -1227,7 +1228,7 @@ const App = () => {
                   fetchData();
                 }}
                 disabled={loading}
-                className="flex items-center gap-2 px-3 py-1.5 bg-gray-900 hover:bg-gray-800 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-lg font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg text-xs"
               >
                 <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
                 Refresh
@@ -1239,21 +1240,21 @@ const App = () => {
           <div className="flex gap-2 items-center">
             {/* Search */}
             <div className="relative w-64">
-              <Search className="absolute left-2 top-1/2 -translate-y-1/2 w-3 h-3 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-blue-500" />
               <input
                 type="text"
                 placeholder="Search..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-7 pr-2 py-1 bg-white border border-gray-300 rounded text-xs text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-900 focus:border-transparent transition-all"
+                className="w-full pl-9 pr-3 py-2 bg-white border-2 border-gray-300 rounded-lg text-xs text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all shadow-sm"
               />
             </div>
 
             {/* Factory Filter */}
             <div className="relative w-40">
-              <Filter className="absolute left-2 top-1/2 -translate-y-1/2 w-3 h-3 text-gray-400" />
+              <Filter className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-purple-500" />
               <select
-                className="w-full pl-7 pr-2 py-1 bg-white border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-gray-900 focus:border-transparent text-xs text-gray-900 transition-all"
+                className="w-full pl-9 pr-3 py-2 bg-white border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-xs text-gray-900 transition-all shadow-sm"
                 value={filterFactory}
                 onChange={(e) => setFilterFactory(e.target.value)}
               >
@@ -1268,25 +1269,25 @@ const App = () => {
 
             {/* Reference Filter */}
             <div className="relative w-40">
-              <SlidersHorizontal className="absolute left-2 top-1/2 -translate-y-1/2 w-3 h-3 text-gray-400" />
+              <SlidersHorizontal className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-green-500" />
               <input
                 type="text"
                 placeholder="Reference..."
                 value={filterReference}
                 onChange={(e) => setFilterReference(e.target.value)}
-                className="w-full pl-7 pr-2 py-1 bg-white border border-gray-300 rounded text-xs text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-900 focus:border-transparent transition-all"
+                className="w-full pl-9 pr-3 py-2 bg-white border-2 border-gray-300 rounded-lg text-xs text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all shadow-sm"
               />
             </div>
 
             {/* Style Filter */}
             <div className="relative w-40">
-              <SlidersHorizontal className="absolute left-2 top-1/2 -translate-y-1/2 w-3 h-3 text-gray-400" />
+              <SlidersHorizontal className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-orange-500" />
               <input
                 type="text"
                 placeholder="Style..."
                 value={filterStyle}
                 onChange={(e) => setFilterStyle(e.target.value)}
-                className="w-full pl-7 pr-2 py-1 bg-white border border-gray-300 rounded text-xs text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-900 focus:border-transparent transition-all"
+                className="w-full pl-9 pr-3 py-2 bg-white border-2 border-gray-300 rounded-lg text-xs text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all shadow-sm"
               />
             </div>
 
@@ -1298,7 +1299,7 @@ const App = () => {
                 setFilterReference('');
                 setFilterStyle('');
               }}
-              className="px-3 py-1 text-xs font-medium text-gray-600 hover:text-gray-900 bg-gray-100 hover:bg-gray-200 rounded transition-colors border border-gray-300 whitespace-nowrap"
+              className="px-4 py-2 text-xs font-semibold text-gray-700 hover:text-gray-900 bg-white hover:bg-gray-50 rounded-lg transition-all border-2 border-gray-300 hover:border-gray-400 whitespace-nowrap shadow-sm hover:shadow"
             >
               Clear Filters
             </button>
@@ -1353,29 +1354,29 @@ const App = () => {
               return (
                 <div
                   key={factory}
-                  className="bg-white rounded border-2 border-gray-400 overflow-hidden shadow-md mb-1"
+                  className="bg-white rounded-xl border-2 border-blue-200 overflow-hidden shadow-lg mb-2 hover:shadow-xl transition-all"
                 >
                   <button
                     onClick={() => toggleFactory(factory)}
-                    className="w-full px-3 py-2 flex items-center justify-between bg-gray-50/50 hover:bg-gray-50 transition-colors"
+                    className="w-full px-4 py-3 flex items-center justify-between bg-gradient-to-r from-blue-50 to-purple-50 hover:from-blue-100 hover:to-purple-100 transition-all"
                   >
-                    <div className="flex items-center gap-2">
-                      <div className={`p-1 rounded transition-colors ${isFactoryOpen ? 'bg-blue-100 text-blue-600' : 'bg-gray-100 text-gray-500'}`}>
+                    <div className="flex items-center gap-3">
+                      <div className={`p-2 rounded-lg transition-all shadow-sm ${isFactoryOpen ? 'bg-blue-600 text-white' : 'bg-white text-blue-600 border-2 border-blue-300'}`}>
                         {isFactoryOpen ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
                       </div>
                       <div className="text-left">
-                        <h2 className="text-xs font-bold text-gray-900">{factory}</h2>
-                        <div className="flex items-center gap-2 text-[10px] text-gray-500 mt-0.5">
-                          <span>{factoryMonths.length} MONTH(S)</span>
+                        <h2 className="text-sm font-extrabold text-gray-900">{factory}</h2>
+                        <div className="flex items-center gap-2 text-[10px] font-semibold text-gray-600 mt-1">
+                          <span className="bg-white px-2 py-0.5 rounded-full border border-blue-200">{factoryMonths.length} MONTH(S)</span>
                           <span>•</span>
-                          <span>{factoryStylesCount} STYLES</span>
+                          <span className="bg-white px-2 py-0.5 rounded-full border border-purple-200">{factoryStylesCount} STYLES</span>
                         </div>
                       </div>
                     </div>
                     {factoryDeadlineConfig && (
-                      <div className="text-right">
-                        <p className="text-[9px] uppercase font-bold text-gray-400 tracking-wider">Factory RM Deadline</p>
-                        <p className="text-xs font-bold text-blue-600">{factoryDeadlineConfig.label}</p>
+                      <div className="text-right bg-white px-3 py-2 rounded-lg border-2 border-blue-200 shadow-sm">
+                        <p className="text-[9px] uppercase font-bold text-gray-500 tracking-wider">Factory RM Deadline</p>
+                        <p className="text-xs font-extrabold text-blue-600">{factoryDeadlineConfig.label}</p>
                       </div>
                     )}
                   </button>
@@ -1425,10 +1426,10 @@ const App = () => {
                                   return (
                                     <div
                                       key={referenceKey}
-                                      className="min-w-[80px] w-[80px] bg-white border-2 border-gray-400 rounded p-1 flex flex-col gap-0.5 hover:border-blue-500 transition-colors flex-shrink-0 shadow-sm"
+                                      className="min-w-[70px] w-[70px] bg-white border-2 border-gray-900 rounded-lg p-1 flex flex-col gap-0.5 hover:border-black hover:shadow-md transition-all flex-shrink-0 shadow-sm"
                                     >
-                                      <div className="text-center">
-                                        <p className="text-[9px] font-bold text-gray-900 truncate" title={safeText(reference)}>
+                                      <div className="text-center bg-black rounded-t px-1 py-0.5 border border-black">
+                                        <p className="text-[8px] font-extrabold text-white truncate" title={safeText(reference)}>
                                           {safeText(reference)}
                                         </p>
                                       </div>
@@ -1451,7 +1452,7 @@ const App = () => {
                                                 onClick={() => toggleStyleCard(styleKey)}
                                                 onMouseEnter={(e) => {
                                                   const rect = e.currentTarget.getBoundingClientRect();
-                                                  const showBelow = rect.top < 200; // Show below if close to top
+                                                  const showBelow = rect.top < 200;
                                                   setTooltipPos({
                                                     x: rect.left + rect.width / 2,
                                                     y: showBelow ? rect.bottom + 12 : rect.top - 12,
@@ -1460,10 +1461,10 @@ const App = () => {
                                                   setHoveredStyleKey(styleKey);
                                                 }}
                                                 onMouseLeave={() => setHoveredStyleKey(null)}
-                                                className={`w-full text-left px-1.5 py-1 rounded border-2 transition-all ${isOpen ? 'bg-blue-50 border-blue-500 ring-1 ring-blue-400' : 'bg-white border-gray-400 hover:border-blue-500'}`}
+                                                className={`w-full text-left px-1.5 py-1 rounded border transition-all shadow-sm ${isOpen ? 'bg-gradient-to-br from-blue-100 to-purple-100 border-blue-500 ring-1 ring-blue-400 shadow-md' : 'bg-white border-blue-300 hover:border-blue-500 hover:shadow-md'}`}
                                               >
                                                 <div className="flex flex-col items-center text-center">
-                                                  <span className="truncate font-semibold text-[9px] w-full leading-tight">{safeText(item.style)}</span>
+                                                  <span className="font-semibold text-[8px] w-full leading-tight break-words">{safeText(item.style)}</span>
                                                   {dateStr && (
                                                     <span className="text-[7px] opacity-70 leading-tight">
                                                       {dateStr}
@@ -1474,42 +1475,42 @@ const App = () => {
 
                                               {/* Arrow Connector (if not last item) */}
                                               {index < referenceData.records.length - 1 && (
-                                                <div className="text-gray-300 py-0">
+                                                <div className="text-gray-600 py-0">
                                                   <ArrowDown className="w-2 h-2" />
                                                 </div>
                                               )}
 
-                                              {/* Hover tooltip for style details - Fixed Position with Dynamic Coords */}
+                                              {/* Hover tooltip - Compact */}
                                               {hoveredStyleKey === styleKey && (
                                                 <div
-                                                  className="fixed z-50 w-48 bg-white border-2 border-gray-400 rounded shadow-xl overflow-hidden pointer-events-none p-1.5"
+                                                  className="fixed z-50 w-40 bg-white border-2 border-gray-900 rounded-lg shadow-xl overflow-hidden pointer-events-none p-1.5"
                                                   style={{
-                                                    left: `${Math.min(Math.max(tooltipPos.x, 140), (typeof window !== 'undefined' ? window.innerWidth : 1920) - 140)}px`,
+                                                    left: `${Math.min(Math.max(tooltipPos.x, 100), (typeof window !== 'undefined' ? window.innerWidth : 1920) - 100)}px`,
                                                     top: `${tooltipPos.y}px`,
                                                     transform: tooltipPos.showBelow ? 'translate(-50%, 0)' : 'translate(-50%, -100%)'
                                                   }}
                                                 >
                                                   <div className="space-y-1 text-xs">
                                                     <div>
-                                                      <p className="text-[8px] uppercase text-gray-400 font-bold tracking-wider mb-0">Style</p>
-                                                      <p className="text-gray-900 font-bold text-sm">{safeText(item.style)}</p>
+                                                      <p className="text-[7px] uppercase text-blue-500 font-extrabold mb-0">Style</p>
+                                                      <p className="text-gray-900 font-extrabold text-[10px]">{safeText(item.style)}</p>
                                                     </div>
                                                     <div>
-                                                      <p className="text-[8px] uppercase text-gray-400 font-bold tracking-wider mb-0">Description</p>
-                                                      <p className="text-gray-700 font-medium text-[10px]">{safeText(item.desc)}</p>
+                                                      <p className="text-[7px] uppercase text-purple-500 font-extrabold mb-0">Description</p>
+                                                      <p className="text-gray-700 font-medium text-[8px] leading-tight">{safeText(item.desc)}</p>
                                                     </div>
-                                                    <div className="grid grid-cols-2 gap-1">
+                                                    <div className="grid grid-cols-2 gap-0.5">
                                                       <div>
-                                                        <p className="text-[8px] uppercase text-gray-400 font-bold tracking-wider mb-0">Status</p>
-                                                        <p className="text-gray-700 text-[10px]">{safeText(item.productStatus)}</p>
+                                                        <p className="text-[7px] uppercase text-green-500 font-extrabold mb-0">Status</p>
+                                                        <p className="text-gray-700 text-[8px]">{safeText(item.productStatus)}</p>
                                                       </div>
                                                       <div>
-                                                        <p className="text-[8px] uppercase text-gray-400 font-bold tracking-wider mb-0">Insp Date</p>
-                                                        <p className="text-blue-600 font-semibold text-[10px]">{formatDateForDisplay(item.inspectionDate) || 'NA'}</p>
+                                                        <p className="text-[7px] uppercase text-orange-500 font-extrabold mb-0">Insp Date</p>
+                                                        <p className="text-blue-600 font-semibold text-[8px]">{formatDateForDisplay(item.inspectionDate) || 'NA'}</p>
                                                       </div>
                                                       <div className="col-span-2">
-                                                        <p className="text-[8px] uppercase text-gray-400 font-bold tracking-wider mb-0">Order Qty</p>
-                                                        <p className="text-gray-900 font-semibold text-[10px]">{safeText(item.qty)}</p>
+                                                        <p className="text-[7px] uppercase text-pink-500 font-extrabold mb-0">Qty</p>
+                                                        <p className="text-gray-900 font-semibold text-[8px]">{safeText(item.qty)}</p>
                                                       </div>
                                                     </div>
                                                   </div>
@@ -1551,47 +1552,47 @@ const App = () => {
 
       {editModal && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 animate-fadeIn">
-          <div className="bg-white rounded-2xl shadow-2xl p-6 max-w-md w-full mx-4 border border-gray-200">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl font-semibold text-blue-600">Edit Inspection Date</h3>
+          <div className="bg-white rounded-lg shadow-xl p-4 max-w-md w-full mx-4 border-2 border-gray-900">
+            <div className="flex justify-between items-center mb-3">
+              <h3 className="text-sm font-semibold text-blue-600">Edit Inspection Date</h3>
               <button onClick={() => setEditModal(null)} className="text-gray-400 hover:text-gray-600">
-                <X className="w-6 h-6" />
+                <X className="w-4 h-4" />
               </button>
             </div>
             <div className="space-y-1">
-              <div className="text-sm text-gray-500">
+              <div className="text-[10px] text-gray-500">
                 <p>Style: {safeText(editModal.style)}</p>
                 <p>Factory: {safeText(editModal.factory)}</p>
               </div>
-              <label className="block text-gray-700 text-sm">
+              <label className="block text-gray-700 text-[10px]">
                 Current Date: <span className="font-semibold">{formatDateForDisplay(editModal.inspectionDate) || 'NA'}</span>
               </label>
               <input
                 type="date"
-                className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                className="w-full px-2 py-1.5 bg-gray-50 border border-gray-300 rounded text-gray-900 text-[10px] focus:outline-none focus:ring-1 focus:ring-blue-500"
                 value={editModal.newDate}
                 onChange={(e) => setEditModal({ ...editModal, newDate: e.target.value })}
               />
             </div>
             {editModal.history && (
-              <div className="mt-4 p-3 bg-gray-50 rounded-lg border border-gray-200">
-                <label className="block text-gray-500 text-sm mb-1">Change History</label>
-                <p className="text-gray-600 text-sm">{editModal.history}</p>
+              <div className="mt-2 p-2 bg-gray-50 rounded border border-gray-200">
+                <label className="block text-gray-500 text-[9px] mb-0.5">Change History</label>
+                <p className="text-gray-600 text-[9px] leading-tight">{editModal.history}</p>
               </div>
             )}
-            <div className="flex gap-3 mt-6">
+            <div className="flex gap-2 mt-3">
               <button
                 onClick={saveInspectionDate}
                 disabled={saving}
-                className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white px-4 py-2 rounded-lg transition-colors flex items-center justify-center gap-2"
+                className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white px-3 py-1.5 rounded transition-colors flex items-center justify-center gap-1 text-[10px] font-semibold"
               >
-                <Save className="w-4 h-4" />
-                {saving ? 'Saving...' : 'Save Changes'}
+                <Save className="w-3 h-3" />
+                {saving ? 'Saving...' : 'Save'}
               </button>
               <button
                 onClick={() => setEditModal(null)}
                 disabled={saving}
-                className="px-4 py-2 bg-gray-100 hover:bg-gray-200 disabled:bg-gray-100 text-gray-600 rounded-lg transition-colors"
+                className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 disabled:bg-gray-100 text-gray-600 rounded transition-colors text-[10px] font-semibold"
               >
                 Cancel
               </button>
@@ -1602,35 +1603,35 @@ const App = () => {
 
       {remarksModal && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 animate-fadeIn">
-          <div className="bg-white rounded-2xl shadow-2xl p-6 max-w-md w-full mx-4 border border-gray-200">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl font-semibold text-purple-600">Edit Remarks</h3>
+          <div className="bg-white rounded-lg shadow-xl p-4 max-w-md w-full mx-4 border-2 border-gray-900">
+            <div className="flex justify-between items-center mb-3">
+              <h3 className="text-sm font-semibold text-purple-600">Edit Remarks</h3>
               <button onClick={() => setRemarksModal(null)} className="text-gray-400 hover:text-gray-600">
-                <X className="w-6 h-6" />
+                <X className="w-4 h-4" />
               </button>
             </div>
             <div className="space-y-1">
-              <p className="text-sm text-gray-500">Style: {safeText(remarksModal.style)}</p>
+              <p className="text-[10px] text-gray-500">Style: {safeText(remarksModal.style)}</p>
               <textarea
-                className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900 h-32"
+                className="w-full px-2 py-1.5 bg-gray-50 border border-gray-300 rounded text-gray-900 h-24 text-[10px] focus:outline-none focus:ring-1 focus:ring-purple-500"
                 value={remarksModal.newRemarks}
                 onChange={(e) => setRemarksModal({ ...remarksModal, newRemarks: e.target.value })}
                 placeholder="Enter remarks..."
               />
             </div>
-            <div className="flex gap-3 mt-6">
+            <div className="flex gap-2 mt-3">
               <button
                 onClick={saveRemarks}
                 disabled={saving}
-                className="flex-1 bg-purple-600 hover:bg-purple-700 disabled:bg-gray-400 text-white px-4 py-2 rounded-lg transition-colors flex items-center justify-center gap-2"
+                className="flex-1 bg-purple-600 hover:bg-purple-700 disabled:bg-gray-400 text-white px-3 py-1.5 rounded transition-colors flex items-center justify-center gap-1 text-[10px] font-semibold"
               >
-                <Save className="w-4 h-4" />
-                {saving ? 'Saving...' : 'Save Remarks'}
+                <Save className="w-3 h-3" />
+                {saving ? 'Saving...' : 'Save'}
               </button>
               <button
                 onClick={() => setRemarksModal(null)}
                 disabled={saving}
-                className="px-4 py-2 bg-gray-100 hover:bg-gray-200 disabled:bg-gray-100 text-gray-600 rounded-lg transition-colors"
+                className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 disabled:bg-gray-100 text-gray-600 rounded transition-colors text-[10px] font-semibold"
               >
                 Cancel
               </button>
